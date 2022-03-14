@@ -27,7 +27,7 @@ private String texte;
 	// optional false=> la relation est obligatoire => un commentaire DOIT avoir une publication*
 	// optional true=> on peu avoir des comm. sans publication
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "post_id", nullable = false)
+	@JoinColumn(name = "post_id")
 	private Post post;
 
 	public long getId() {
