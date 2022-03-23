@@ -1,5 +1,7 @@
 package com.duranco.manytoone;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,18 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
-public class Comment extends AuditModel {
+public class Comment extends AuditModel implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
@@ -28,6 +40,11 @@ private String texte;
 	// optional true=> on peu avoir des comm. sans publication
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "post_id")
+	// serialisation manuelle
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class)
+	@JsonIdentityReference(alwaysAsId = true)
+	@JsonProperty("post_id")
+	// lecture
 	private Post post;
 
 	public long getId() {
@@ -52,6 +69,10 @@ private String texte;
 
 	public void setPost(Post post) {
 		this.post = post;
+	}
+
+	public Comment() {
+		super();
 	}
 
 

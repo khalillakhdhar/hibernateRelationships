@@ -1,5 +1,7 @@
 package com.duranco.manytoone;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,12 @@ import javax.persistence.Lob;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Post extends AuditModel {
+public class Post extends AuditModel implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -44,6 +50,9 @@ public class Post extends AuditModel {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public Post() {
+		super();
 	}
 	
 	

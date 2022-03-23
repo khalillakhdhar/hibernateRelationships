@@ -29,6 +29,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public abstract class AuditModel implements Serializable // permet de lire la date sous forme de chaine  
 { 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = true, updatable = false)
 	@CreatedDate // récupération de la date auto de création d'instance
