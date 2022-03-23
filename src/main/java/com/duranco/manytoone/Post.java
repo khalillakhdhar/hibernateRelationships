@@ -13,17 +13,18 @@ public class Post extends AuditModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	@Size(max=100, min = 6)
 	private String title;
 	@Column(length = 250,nullable = true)
 	private String description;
 	@Lob // permet de créer un texte long
 	private String content;
-	public int getId() {
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getTitle() {

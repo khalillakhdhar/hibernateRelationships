@@ -30,12 +30,12 @@ public abstract class AuditModel implements Serializable // permet de lire la da
 { 
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false, updatable = false)
+	@Column(nullable = true, updatable = false)
 	@CreatedDate // récupération de la date auto de création d'instance
 	private Date createdAt;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@LastModifiedDate // récupération de la date auto de la derniere modification d'instance
 	private Date updatedAt;
 
